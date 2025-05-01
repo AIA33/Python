@@ -1,0 +1,3 @@
+# Varios programitas de Python.
+
+Prácticas, pruebas por diversión/aprendizaje y más...
