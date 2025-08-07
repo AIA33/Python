@@ -11,8 +11,8 @@ os.system("cls")
 
 ##############precarga para test
 
-biblioteca.registrar_socio(nombre = "juan perez")
-biblioteca.registrar_socio(nombre = "micaela rodriguez")
+biblioteca.registrar_socio(nombre = "ivan arevalo")
+biblioteca.registrar_socio(nombre = "rocio arevalo")
 biblioteca.registrar_libro(titulo = "el principito", autor = "io", isbn = "ni idea")
 biblioteca.registrar_libro(titulo = "cenicienta", autor = "otro", isbn = "ni idea2")
 
@@ -189,10 +189,45 @@ def menu_socios() -> None:
                 time.sleep(2)
                 break
             elif opcion == 4: # Buscar socio
-                socio_ID = int(input("Ingrese ID de socio a buscar: "))
+                os.system("clear")
+                print(f"\t{Fore.RED}[{Fore.YELLOW}BUSCAR SOCIO{Fore.RED}]{Fore.RESET}")
+                print(f"\nIngrese {Fore.CYAN}ID {Fore.RESET}de socio a {Fore.GREEN}buscar:{Fore.RESET} ", end="")
+                
+                socio_ID = input()
+                caracteres =  [' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',',
+                               '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', 'A', 'B', 'C',
+                               'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+                               'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '[', '\\', ']',
+                               '^', '_', '`', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+                               'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w',
+                               'x', 'y', 'z', '{', '|', '}', '~', 'ñ', 'Ñ']
+                
+                if socio_ID == "":
+                    print(f"\n{Fore.RED}ERROR{Fore.RESET}: No se ingresó ningún {Fore.CYAN}ID{Fore.RESET}.", end="")
+                    time.sleep(2)
+                    continue
+                
+                if socio_ID.startswith(" ") and len(socio_ID) > 1:
+                    socio_ID = socio_ID.replace(" ","")
+                
+                check = False
+                for caracter in socio_ID:
+                    if caracter in caracteres:
+                        print(f"\n{Fore.RED}ERROR: {Fore.RESET}El {Fore.CYAN}ID {Fore.RESET}debe ser un {Fore.CYAN}número{Fore.RESET}.", end="")
+                        time.sleep(2)
+                        check = True
+                        break
+                if check:
+                    continue
+                
+                socio_ID = int(socio_ID)    
+                os.system("clear")
+                print(f"\t{Fore.RED}[{Fore.YELLOW}RESULTADOS DE BÚSQUEDA{Fore.RED}]\n")
                 biblioteca.buscar_socio_byID(socio_ID)
-                input("Presione ENTER para continuar...")
+                print(f"\nPresione {Fore.YELLOW}ENTER{Fore.RESET} para continuar...", end="")
+                input()
                 break
+                
             elif opcion == 5: # Mostrar todos los socios
                 if len(biblioteca.socios) == 0:
                     print("La Biblioteca no tiene ningún asociado.")

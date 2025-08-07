@@ -257,8 +257,8 @@ class Biblioteca:
     # GET: Buscar socio por ID.
     def buscar_socio_byID(self, socio_ID: int):
         if socio_ID in self.__socios.keys():
-            print(f"Nombre: {str(self.__socios[socio_ID]['nombre']).split()[0].capitalize()} {str(self.__socios[socio_ID]['nombre']).split()[1].capitalize()}.")
-            print(f"Libros Prestados: {str(self.__socios[socio_ID]['libros_prestados']).upper()}")
+            print(f"{Fore.YELLOW}Nombre: {Fore.RESET}{str(self.__socios[socio_ID]['nombre']).split()[0].capitalize()} {str(self.__socios[socio_ID]['nombre']).split()[1].capitalize()}.")
+            print(f"{Fore.YELLOW}Libros Prestados: {Fore.RESET}{str(self.__socios[socio_ID]['libros_prestados']).upper()}")
             
     @property        
     # GET: Libros disponibles para prestar únicamente.
