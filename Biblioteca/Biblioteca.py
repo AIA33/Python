@@ -124,12 +124,14 @@ class Biblioteca:
         
         for id, detalles_socio in self.__socios.items():
             if str(detalles_socio["nombre"]).lower() == nombre.lower():
+                nombre_socio = str(detalles_socio["nombre"]).split(" ")[0].capitalize() + " " + str(detalles_socio["nombre"]).split(" ")[1].capitalize()
                 if self.__socios[id]["libros_prestados"] == ["Ninguno"]:
-                    print("ENTRA POR NINGUNO...")
                     self.__socios[id]["libros_prestados"] = [self.__catalogo[isbn]["titulo"]]
                 else:
-                    print("ENTRA POR YA TENER UN LIBRO PRESTADO...")
                     self.__socios[id]["libros_prestados"] += [self.__catalogo[isbn]["titulo"]]
+        
+        print(f"\n{Fore.GREEN}>>> {Fore.RESET}Libro [{Fore.CYAN}{self.__catalogo[isbn]['titulo']}{Fore.RESET}] prestado correctamente al usuario {Fore.CYAN}{nombre_socio}{Fore.RESET}.", end="")
+        input()
     
 #   -> VERIFICAR SI SOCIO TIENE EL LIBRO...
     def socio_tiene_libro(self, nombre_socio: str, isbn_libro_devolver: str):
@@ -209,11 +211,11 @@ class Biblioteca:
     def mostrar_socios(self) -> None:
         
         for id_socio in self.__socios.keys():
-            print(f"[Socio ID: {id_socio}]")
+            print(f"\n[{Fore.GREEN}Socio ID{Fore.RESET}: {id_socio}]")
             nombre_socio: str = self.__socios[id_socio]["nombre"]
             nombre_socio = nombre_socio.split()[0].capitalize() + " " + nombre_socio.split()[1].capitalize()
-            print(f"\tNombre: {nombre_socio}")
-            print(f"\tLibros prestados: ", end="")
+            print(f"\t{Fore.YELLOW}Nombre{Fore.RESET}: {nombre_socio}")
+            print(f"\t{Fore.YELLOW}Libros prestados{Fore.RESET}: ", end="")
             for index, libro in enumerate(self.__socios[id_socio]["libros_prestados"]):
                 if index == len(self.__socios[id_socio]["libros_prestados"]) - 1:
                     print(f"{libro}.")

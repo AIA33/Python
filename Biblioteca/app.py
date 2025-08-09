@@ -226,33 +226,51 @@ def menu_socios() -> None:
                 biblioteca.buscar_socio_byID(socio_ID)
                 print(f"\nPresione {Fore.YELLOW}ENTER{Fore.RESET} para continuar...", end="")
                 input()
-                break
-                
+                break             
             elif opcion == 5: # Mostrar todos los socios
+                os.system("clear")
+                print(f"\t{Fore.RED}[{Fore.YELLOW}SOCIOS REGISTRADOS{Fore.RED}]{Fore.RESET}")
                 if len(biblioteca.socios) == 0:
-                    print("La Biblioteca no tiene ningún asociado.")
+                    print("\nLa Biblioteca no tiene ningún asociado.")
                     time.sleep(2)
                 else:
                     biblioteca.mostrar_socios
-                    print("Presione ENTER para continuar...", end="") 
+                    print(f"\nPresione {Fore.YELLOW}ENTER {Fore.RESET}para continuar...", end="") 
                     input()
                 break
             elif opcion == 6: # Prestar Libro seleccionado...
                 
+                os.system("clear")
+                print(f"\t{Fore.RED}[{Fore.YELLOW}PRESTAR LIBRO A SOCIO{Fore.RED}]{Fore.RESET}")
+                
                 # Pidiendo el nombre del usuario...
-                nombre = input("Ingrese nombre del socio: ")
+                print(f"\nIngrese {Fore.CYAN}nombre{Fore.RESET} del {Fore.CYAN}socio{Fore.RESET}: ", end="")
+                nombre = input()
+                
+                if nombre == "":
+                    print(f"\n{Fore.RED}ERROR{Fore.RESET}: No se ingresó ningún {Fore.CYAN}nombre{Fore.RESET}.", end="")
+                    input()
+                    continue
                 
                 # Validando usuario...
                 if not biblioteca.validar_nombre_socio(nombre):
-                    print(f"{nombre}, no se encuentra registrado como socio de la biblioteca.")
+                    print(f"\n{nombre}, {Fore.RED}no se encuentra registrado {Fore.RESET}como socio de la biblioteca.", end="")
+                    input()
                     continue
                 
                 # Pidiendo Libro a prestar...
-                prestar_libro = input("Ingrese ISBN del libro a prestar: ").lower()
+                print(f"Ingrese {Fore.CYAN}ISBN{Fore.RESET} del {Fore.CYAN}libro{Fore.RESET} a prestar: ", end="")
+                prestar_libro = input().lower()
+                
+                if prestar_libro == "":
+                    print(f"\n{Fore.RED}ERROR{Fore.RESET}: No se ingresó ningún {Fore.CYAN}ISBN libro{Fore.RESET}.", end="")
+                    input()
+                    continue
                 
                 # Validando si el libro existe...
                 if not biblioteca.validar_libro_existencia(prestar_libro):
-                    print(f"{prestar_libro}, no registrado dentro del catálogo de la biblioteca.")
+                    print(f"\n{prestar_libro}, {Fore.RED}no registrado{Fore.RESET} dentro del catálogo de la biblioteca.", end="")
+                    input()
                     continue
                 
                 if not biblioteca.validar_disponibilidad(prestar_libro):
