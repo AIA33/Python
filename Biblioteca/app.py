@@ -11,8 +11,8 @@ os.system("cls")
 
 ##############precarga para test
 
-biblioteca.registrar_socio(nombre = "ivan arevalo")
-biblioteca.registrar_socio(nombre = "rocio arevalo")
+biblioteca.registrar_socio(nombre = "juan perez")
+biblioteca.registrar_socio(nombre = "marta rodriguez")
 biblioteca.registrar_libro(titulo = "el principito", autor = "io", isbn = "ni idea")
 biblioteca.registrar_libro(titulo = "cenicienta", autor = "otro", isbn = "ni idea2")
 
